@@ -32,7 +32,7 @@ jobs:
         # Root directory.
         root_dir: './dist'
         # Base directory; common prefix of all files and directories in the archive, relative to root_dir.
-        base_dir: . # optional, default is .
+        base_dir: ./dist # optional, default is .
         # Output file path. Supported extensions: zip, tar, tar.gz(tgz), tar.bz2(tbz2), tar.xz(txz)
         file_path: output.zip # optional, default is output.zip
         # Shows details about the result of running this action.
@@ -55,7 +55,7 @@ jobs:
         # Name of S3 Bucket
         bucket: code-deploy-bucket-ykim
         # A Local Source Directory to Upload
-        source: ./output.zip # default is ./dist
+        source: ./dist/output.zip # default is ./dist
         # A Remote Target Directory to Upload
         target: GitHubActions # default is 
     
