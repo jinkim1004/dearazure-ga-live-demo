@@ -22,8 +22,7 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Publish
-      run: dotnet publish --configuration Release -o './dist'
-      
+      run: dotnet publish --configuration Release -o './dist'      
     - name: "Configure AWS Credentials" Action For GitHub Actions
       # You may pin to the exact commit or the version.
       # uses: aws-actions/configure-aws-credentials@0309c38ebd10f90dfbb3889431bcf4ea38088012
