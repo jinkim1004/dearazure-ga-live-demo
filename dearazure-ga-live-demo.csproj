@@ -4,5 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>dearazure_ga_live_demo</RootNamespace>
   </PropertyGroup>
-
+  <ItemGroup>
+    <None Include="appspec.yml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
