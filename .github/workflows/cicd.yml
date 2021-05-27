@@ -23,14 +23,30 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Publish
       run: dotnet publish --configuration Release -o './dist'
-      
+    
+    - name: Zip Release
+      # You may pin to the exact commit or the version.
+      # uses: TheDoctor0/zip-release@f216aacfedcd3e76b3b027ab065503438cd00d57
+      uses: TheDoctor0/zip-release@0.4.2
+      with:
+        # Filename for archive
+        filename: sampleApp.zip # default is release.zip
+        # Base path for archive files
+        path: ./dist # optional, default is .
+        # Working directory before zipping
+        directory: # optional, default is .
+        # List of excluded files / directories
+        exclusions: # optional, default is 
+        # Tool to use for archiving
+        type: zip # optional, default is zip
+        
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
-
+    
     - name: AWS Deploy S3
       # You may pin to the exact commit or the version.
       # uses: oneyedev/aws-deploy-s3@16e61e78e12904502d31e6c4adbe1f7d58eddaa7
@@ -44,3 +60,24 @@ jobs:
         source: ./dist # default is ./dist
         # A Remote Target Directory to Upload
         target: GitHubActions # default is 
+    
+    - name: Sourcetoad - AWS CodeDeploy for GitHub Actions
+      # You may pin to the exact commit or the version.
+      # uses: sourcetoad/aws-codedeploy-action@62597bb4ecbcd206477fdc54665e214fdc2e9cfd
+      uses: sourcetoad/aws-codedeploy-action@v1.0.4
+      with:
+        s3_bucket: code-deploy-bucket-ykim
+        # S3 Folder for ZIP.
+        s3_folder: GitHubActions
+        # Directory to be archived instead of entire workspace.
+        directory: # optional
+        # Files to be excluded during archiving (space delimited).
+        excluded_files: # optional
+        # AWS CodeDeploy Application Name
+        codedeploy_name: DemoCoreApp
+        # AWS CodeDeploy Application Group
+        codedeploy_group: Pre-Deployment-Group
+        # Whether to register the deployment (vs automatic deploy).
+        codedeploy_register_only: # optional, default is false
+        # Max amount of iterations (15s increments) to wait for a deployment
+        max_polling_iterations: # optional, default is 60
