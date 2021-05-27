@@ -30,9 +30,9 @@ jobs:
       uses: vimtor/action-zip@v1
       with:
         # Files or directories to zip
-        files: ./dist
+        files: /home/runner/work/dearazure-ga-live-demo/dearazure-ga-live-demo/bin/Release/netcoreapp3.1/
         # Name of output zip file
-        dest: ./artifacts/build.zip # optional, default is result.zip
+        dest: /home/runner/work/dearazure-ga-live-demo/dearazure-ga-live-demo/bin/Release/build.zip # optional, default is result.zip
         # Whether to add subdirectories to simply zip all files to the root
         recursive: true # optional, default is true
 
@@ -53,18 +53,18 @@ jobs:
         # Name of S3 Bucket
         bucket: code-deploy-bucket-ykim
         # A Local Source Directory to Upload
-        source: ./artifacts/build.zip # default is ./dist
+        source: /home/runner/work/dearazure-ga-live-demo/dearazure-ga-live-demo/bin/Release/build.zip # default is ./dist
         # A Remote Target Directory to Upload
-        target: GitHubActions # default is 
+        target:/ # default is 
     
     - name: Sourcetoad - AWS CodeDeploy for GitHub Actions
       # You may pin to the exact commit or the version.
       # uses: sourcetoad/aws-codedeploy-action@62597bb4ecbcd206477fdc54665e214fdc2e9cfd
       uses: sourcetoad/aws-codedeploy-action@v1.0.4
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws_region: us-east-1
         s3_bucket: code-deploy-bucket-ykim
         # S3 Folder for ZIP.
         s3_folder: GitHubActions
