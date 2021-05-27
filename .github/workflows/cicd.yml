@@ -12,21 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.101
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
-    - name: Publish
-      run: dotnet publish --configuration Release -o './dist'      
-    - name: "Configure AWS Credentials" Action For GitHub Actions
-      # You may pin to the exact commit or the version.
+    # You may pin to the exact commit or the version.
       # uses: aws-actions/configure-aws-credentials@0309c38ebd10f90dfbb3889431bcf4ea38088012
-      uses: aws-actions/configure-aws-credentials@v1
+    - uses: aws-actions/configure-aws-credentials@v1
       with:
         # AWS Access Key ID. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
         aws-access-key-id: AKIAZL47SBOLCUMA75AS # optional
@@ -48,6 +36,18 @@ jobs:
         role-external-id: # optional
         # Skip session tagging during role assumption
         role-skip-session-tagging: # optional 
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+    - name: Publish
+      run: dotnet publish --configuration Release -o './dist'      
+    - name: "Configure AWS Credentials" Action For GitHub Actions      
     - name: AWS Deploy S3
       # You may pin to the exact commit or the version.
       # uses: oneyedev/aws-deploy-s3@16e61e78e12904502d31e6c4adbe1f7d58eddaa7
