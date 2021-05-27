@@ -24,7 +24,31 @@ jobs:
     - name: Publish
       run: dotnet publish --configuration Release -o './dist'
       
-     
+    - name: "Configure AWS Credentials" Action For GitHub Actions
+      # You may pin to the exact commit or the version.
+      # uses: aws-actions/configure-aws-credentials@0309c38ebd10f90dfbb3889431bcf4ea38088012
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        # AWS Access Key ID. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
+        aws-access-key-id: AKIAZL47SBOLCUMA75AS # optional
+        # AWS Secret Access Key. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
+        aws-secret-access-key: jb50FMJh5OVlIoAXCXlsVk6D/z3BYNa/Qzkpttd1 # optional
+        # AWS Session Token
+        aws-session-token: # optional
+        # AWS Region, e.g. us-east-2
+        aws-region: us-east-1
+        # Whether to set the AWS account ID for these credentials as a secret value, so that it is masked in logs. Valid values are 'true' and 'false'. Defaults to true
+        mask-aws-account-id: true # optional
+        # Use the provided credentials to assume an IAM role and configure the Actions environment with the assumed role credentials rather than with the provided credentials
+        role-to-assume: # optional
+        # Role duration in seconds (default: 6 hours)
+        role-duration-seconds: # optional
+        # Role session name (default: GitHubActions)
+        role-session-name: # optional
+        # The external ID of the role to assume
+        role-external-id: # optional
+        # Skip session tagging during role assumption
+        role-skip-session-tagging: # optional 
     - name: AWS Deploy S3
       # You may pin to the exact commit or the version.
       # uses: oneyedev/aws-deploy-s3@16e61e78e12904502d31e6c4adbe1f7d58eddaa7
