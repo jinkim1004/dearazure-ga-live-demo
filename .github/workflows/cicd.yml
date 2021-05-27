@@ -30,11 +30,11 @@ jobs:
       uses: vimtor/action-zip@v1
       with:
         # Files or directories to zip
-        files: ./dist/*
+        files: ./dist
         # Name of output zip file
         dest: ./artifacts/build.zip # optional, default is result.zip
         # Whether to add subdirectories to simply zip all files to the root
-        recursive: # optional, default is true
+        recursive: true # optional, default is true
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -62,6 +62,9 @@ jobs:
       # uses: sourcetoad/aws-codedeploy-action@62597bb4ecbcd206477fdc54665e214fdc2e9cfd
       uses: sourcetoad/aws-codedeploy-action@v1.0.4
       with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
         s3_bucket: code-deploy-bucket-ykim
         # S3 Folder for ZIP.
         s3_folder: GitHubActions
