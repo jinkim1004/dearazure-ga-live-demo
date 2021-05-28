@@ -12,13 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print context 
-        uses: lafernando/github-action-bash@v1.0      
-        run: |
-          echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
-          echo "github.workspace = ${{ github.workspace }}"
-          echo "$GITHUB_CONTEXT"
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
+         
   build:
 
     runs-on: ubuntu-latest
