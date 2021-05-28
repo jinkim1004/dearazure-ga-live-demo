@@ -40,10 +40,11 @@ jobs:
    
     - name: Publish
       run: dotnet publish -c Release -o dotnetcorewebapp
-    - name: Create ZIP deployment package
-      run: zip -r ${{ env.DEPLOY_PACAGE_NAME}} ./dotnetcorewebapp 
     - name: List current folder after release
       run: ls -la
+    - name: Create ZIP deployment package
+      run: zip -r ${{ env.DEPLOY_PACAGE_NAME}} bin/Release/netcoreapp3.1 
+   
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
