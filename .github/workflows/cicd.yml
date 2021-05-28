@@ -6,19 +6,18 @@ on:
   pull_request:
     branches: [ main ]
   
-jobs:
-  check_workspace:
-    name: Check the value of workspace
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print context 
-        run: echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
-         
+jobs: 
   build:
 
     runs-on: ubuntu-latest
 
     steps:
+    - uses: lafernando/github-action-bash@v1.0   
+    - name: print path
+      run: |
+          echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
+          echo "github.workspace = ${{ github.workspace }}"
+          echo "$GITHUB_CONTEXT"
     - uses: actions/checkout@v2
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
