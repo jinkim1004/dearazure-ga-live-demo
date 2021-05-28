@@ -31,11 +31,9 @@ jobs:
     - name: Publish
       run: dotnet publish --configuration Release -o './dist'
 
-    - name: Install zip
-      uses: montudor/action-zip@v1
-    - name: Zip output
-      run: zip -r build.zip . -i ./dist
-      working-directory: ./dist
+    - uses: montudor/action-zip@v1
+      with:
+        args: zip -qq -r finalbuild.zip ./dist
 
     # - name: Configure AWS Credentials
     #   uses: aws-actions/configure-aws-credentials@v1
