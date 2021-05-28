@@ -61,26 +61,26 @@ jobs:
     #     # Tool to use for archiving
     #     type: zip # optional, default is zip
 
-    # - name: Configure AWS Credentials
-    #   uses: aws-actions/configure-aws-credentials@v1
-    #   with:
-    #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    #     aws-region: us-east-1
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
     
-    # - name: AWS Deploy S3
-    #   # You may pin to the exact commit or the version.
-    #   # uses: oneyedev/aws-deploy-s3@16e61e78e12904502d31e6c4adbe1f7d58eddaa7
-    #   uses: oneyedev/aws-deploy-s3@v2
-    #   with:
-    #     # AWS Region of S3 Bucket
-    #     region: us-east-1  # default is us-east-1
-    #     # Name of S3 Bucket
-    #     bucket: code-deploy-bucket-ykim
-    #     # A Local Source Directory to Upload
-    #     source: ./build.zip # default is ./dist
-    #     # A Remote Target Directory to Upload
-    #     target: GitHubActions # default is 
+    - name: AWS Deploy S3
+      # You may pin to the exact commit or the version.
+      # uses: oneyedev/aws-deploy-s3@16e61e78e12904502d31e6c4adbe1f7d58eddaa7
+      uses: oneyedev/aws-deploy-s3@v2
+      with:
+        # AWS Region of S3 Bucket
+        region: us-east-1  # default is us-east-1
+        # Name of S3 Bucket
+        bucket: code-deploy-bucket-ykim
+        # A Local Source Directory to Upload
+        source: /home/runner/work/dearazure-ga-live-demo/artifac/build.zip # default is ./dist
+        # A Remote Target Directory to Upload
+        target: GitHubActions # default is 
     
     # - name: Sourcetoad - AWS CodeDeploy for GitHub Actions
     #   # You may pin to the exact commit or the version.
