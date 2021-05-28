@@ -52,6 +52,6 @@ jobs:
         # Name of S3 Bucket
         bucket: code-deploy-bucket-ykim
         # A Local Source Directory to Upload
-        source: ./dist/finalbuild.zip # default is ./dist
+        source: finalbuild.zip # default is ./dist
         # A Remote Target Directory to Upload
         target: GitHubActions # default is 
