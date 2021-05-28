@@ -20,9 +20,9 @@ jobs:
         # PowerShell script to execute in Actions-hydrated context
         script: |
           Write-Output "Work Space Directory is:"${{ github.workspace }}
-          Write-Output "Work Flow is:"${{ GITHUB_WORKFLOW }}
-          Write-Output "Build ID is:"${{ GITHUB_RUN_ID }}
-          Write-Output "Build Number is:"${{ GITHUB_RUN_NUMBER }}
+          Write-Output "Work Flow is:"${{ GITHUB.WORKFLOW }}
+          Write-Output "Build ID is:"${{ GITHUB.RUN_ID }}
+          Write-Output "Build Number is:"${{ GITHUB.RUN_NUMBER }}
     - uses: actions/checkout@v2
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
