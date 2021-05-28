@@ -9,9 +9,9 @@ on:
 jobs:
   check_workspace:
     name: Check the value of workspace
-    runs-on: [self-hosted, our-machines]
+    runs-on: ubuntu-latest
     steps:
-      - name: Print context
+      - name: Print context       
         run: |
           echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
           echo "github.workspace = ${{ github.workspace }}"
