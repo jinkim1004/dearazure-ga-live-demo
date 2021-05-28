@@ -33,10 +33,13 @@ jobs:
    
     - name: Build
       run: dotnet build --configuration Release --no-restore
+    - name: List current folder after build
+      run: ls -la
    
     - name: Publish
       run: dotnet publish -c Release -o dotnetcorewebapp
-
+    - name: List current folder after release
+      run: ls -la
     # - name: Configure AWS Credentials
     #   uses: aws-actions/configure-aws-credentials@v1
     #   with:
