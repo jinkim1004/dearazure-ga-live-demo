@@ -34,7 +34,7 @@ jobs:
     - name: Install zip
       uses: montudor/action-zip@v1
     - name: Zip output
-      run: zip -r build.zip 
+      run: zip -r build.zip . -i ./dist
       working-directory: ./dist
 
     # - name: Configure AWS Credentials
