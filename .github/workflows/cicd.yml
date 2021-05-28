@@ -28,7 +28,7 @@ jobs:
       uses: vimtor/action-zip@v1
       with:
         # Files or directories to zip
-        files: /home/runner/work/dearazure-ga-live-demo/dearazure-ga-live-demo/bin/Release/netcoreapp3.1
+        files: /home/runner/work/dearazure-ga-live-demo/dearazure-ga-live-demo/bin/Release/netcoreapp3.1/dearazure-ga-live-demo.dll
         # Name of output zip file
         dest: /home/runner/work/dearazure-ga-live-demo/artifac/build.zip # optional, default is result.zip
         # Whether to add subdirectories to simply zip all files to the root
