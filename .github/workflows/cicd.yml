@@ -41,7 +41,7 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release -o dotnetcorewebapp
     - name: Create ZIP deployment package
-      run: zip -r ${{ env.DEPLOY_PACAGE_NAME}} ./ -x *.git*
+      run: zip -r ${{ env.DEPLOY_PACAGE_NAME}} dotnetcorewebapp -x *.git*
     - name: List current folder after release
       run: ls -la
     - name: Configure AWS Credentials
