@@ -1,6 +1,6 @@
 name: .NET-CICD-Pipeline
 env: 
-  DEPLOY_PACKAGE_NAME               : "dotnet_app_${{ GITHUB.RUN_ID }}_${{ GITHUB.RUN_NUMBER }}"
+  DEPLOY_PACKAGE_NAME               : "dotnet_app_${{ GITHUB.RUN_ID }}_${{ GITHUB.RUN_NUMBER }}.zip"
   EB_PACKAGE_S3_BUCKET_NAME         : "code-deploy-bucket-ykim"
 on:
   push:
@@ -36,7 +36,7 @@ jobs:
     - name: Build
       run: |
         dotnet build --configuration Release --no-restore  
-        zip -r release.zip ./bin/Release/netcoreapp3.1
+        zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./bin/Release/netcoreapp3.1
    
     # - name: Publish
     #   run: dotnet publish -c Release -o dotnetcorewebapp
@@ -52,7 +52,7 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
     - name: Copy Deployment package to S3 bucket
-      run: aws s3 cp release.zip s3://${{ env.EB_PACKAGE_S3_BUCKET_NAME}}
+      run: aws s3 cp ${{ env.DEPLOY_PACKAGE_NAME }} s3://${{ env.EB_PACKAGE_S3_BUCKET_NAME}}
     
     
     
