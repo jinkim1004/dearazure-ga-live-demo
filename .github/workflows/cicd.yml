@@ -18,7 +18,11 @@ jobs:
       uses: Amadevus/pwsh-script@v2.0.1
       with:
         # PowerShell script to execute in Actions-hydrated context
-        script: Write-Output "Work Space Directory is:"${{ github.workspace }}
+        script: |
+          Write-Output "Work Space Directory is:"${{ github.workspace }}
+          Write-Output "Work Flow is:"${{ GITHUB_WORKFLOW }}
+          Write-Output "Build ID is:"${{ GITHUB_RUN_ID }}
+          Write-Output "Build Number is:"${{ GITHUB_RUN_NUMBER }}
     - uses: actions/checkout@v2
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
@@ -42,16 +46,16 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-    - name: AWS Deploy S3
-      # You may pin to the exact commit or the version.
-      # uses: oneyedev/aws-deploy-s3@16e61e78e12904502d31e6c4adbe1f7d58eddaa7
-      uses: oneyedev/aws-deploy-s3@v2
-      with:
-        # AWS Region of S3 Bucket
-        region: us-east-1  # default is us-east-1
-        # Name of S3 Bucket
-        bucket: code-deploy-bucket-ykim
-        # A Local Source Directory to Upload
-        source: finalbuild.zip # default is ./dist
-        # A Remote Target Directory to Upload
-        target: GitHubActions # default is 
+    # - name: AWS Deploy S3
+    #   # You may pin to the exact commit or the version.
+    #   # uses: oneyedev/aws-deploy-s3@16e61e78e12904502d31e6c4adbe1f7d58eddaa7
+    #   uses: oneyedev/aws-deploy-s3@v2
+    #   with:
+    #     # AWS Region of S3 Bucket
+    #     region: us-east-1  # default is us-east-1
+    #     # Name of S3 Bucket
+    #     bucket: code-deploy-bucket-ykim
+    #     # A Local Source Directory to Upload
+    #     source: finalbuild.zip # default is ./dist
+    #     # A Remote Target Directory to Upload
+    #     target: GitHubActions # default is 
