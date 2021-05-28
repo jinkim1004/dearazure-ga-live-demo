@@ -38,12 +38,12 @@ jobs:
     - name: create artifact
       uses: montudor/action-zip@v0.1.0
       with:
-        args: zip -X -r build/${{ env.DEPLOY_PACAGE_NAME}}.zip ./bin/Release/netcoreapp3.1/
+        args: zip -X -r build/dotnetapp.zip ./bin/Release/netcoreapp3.1/
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-         name: ${{ env.DEPLOY_PACAGE_NAME}}
-         path: build/${{ env.DEPLOY_PACAGE_NAME}}.zip
+         name: dotnetapp
+         path: build/dotnetapp.zip
    
     # - name: Publish
     #   run: dotnet publish -c Release -o dotnetcorewebapp
