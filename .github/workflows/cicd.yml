@@ -10,7 +10,9 @@ jobs:
   check_workspace:
     name: Check the value of workspace
     runs-on: ubuntu-latest
-    steps:        
+    steps:
+      - name: Print context 
+        uses: lafernando/github-action-bash@v1.0      
         run: |
           echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
           echo "github.workspace = ${{ github.workspace }}"
