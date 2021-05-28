@@ -21,24 +21,16 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
-    - name: Copy file
-      # You may pin to the exact commit or the version.
-      # uses: canastro/copy-action@7ddff6fc153a2ea2cd0fb88ed9750544c051e399
-      uses: canastro/copy-action@0.0.2
-      with:
-        # Source file
-        source: $(Build.SourcesDirectory)\dearazure-ga-live-demo\bin\$(BuildConfiguration)\netcoreapp3.1
-        # Target file
-        target: $(Build.ArtifactStagingDirectory)\dearazure-ga-live-demo
+
     - name: Easy Zip Files
       # You may pin to the exact commit or the version.
       # uses: vimtor/action-zip@5f1c4aa587ea41db1110df6a99981dbe19cee310
       uses: vimtor/action-zip@v1
       with:
         # Files or directories to zip
-        files: $(Build.ArtifactStagingDirectory)\dearazure-ga-live-demo
+        files: /home/runner/work/dearazure-ga-live-demo/dearazure-ga-live-demo/bin/Release/netcoreapp3.1/
         # Name of output zip file
-        dest: $(Build.ArtifactStagingDirectory)\dearazure-ga-live-demo_$(Build.BuildNumber).zip # optional, default is result.zip
+        dest: /home/runner/work/dearazure-ga-live-demo/artifac/build.zip # optional, default is result.zip
         # Whether to add subdirectories to simply zip all files to the root
         recursive: true # optional, default is true
     # - name: Publish
