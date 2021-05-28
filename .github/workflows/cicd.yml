@@ -1,6 +1,6 @@
 name: .NET-CICD-Pipeline
 env: 
-  DEPLOY_PACKAGE_NAME               : "dotnet_app_${{ GITHUB.RUN_ID }}_${{ GITHUB.RUN_NUMBER }}.zip"
+  DEPLOY_PACKAGE_NAME               : "dotnet_app_${{ GITHUB.RUN_ID }}_${{ GITHUB.RUN_NUMBER }}"
   EB_PACKAGE_S3_BUCKET_NAME         : "code-deploy-bucket-ykim"
 on:
   push:
@@ -35,14 +35,16 @@ jobs:
    
     - name: Build
       run: dotnet build --configuration Release --no-restore
-    - name: List current folder after build
-      run: ls -la
-    - name: cd into bin dir and list build files
-      run: |
-        cd ./bin/Release/netcoreapp3.1/
-        zip -r ${{ env.DEPLOY_PACAGE_NAME}}
-        cd /home/runner/work/dearazure-ga-live-demo/dearazure-ga-live-demo
-        ls -la
+    - name: create artifact
+      uses: montudor/action-zip@v0.1.0
+      with:
+        args: zip -X -r build/${{ env.DEPLOY_PACAGE_NAME}}.zip . *.*
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+         name: ${{ env.DEPLOY_PACAGE_NAME}}
+         path: build/${{ env.DEPLOY_PACAGE_NAME}}.zip
+   
     # - name: Publish
     #   run: dotnet publish -c Release -o dotnetcorewebapp
     # - name: List current folder after release
