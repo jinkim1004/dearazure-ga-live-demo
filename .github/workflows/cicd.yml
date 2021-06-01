@@ -53,9 +53,9 @@ jobs:
       uses: sourcetoad/aws-codedeploy-action@v1.0.4
       with:
         # AWS Access Key
-        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         # AWS Secret Key
-        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         # AWS Region
         aws_region: us-east-1 # optional, default is us-east-1
         # S3 Bucket for CodeDeploy Assets
