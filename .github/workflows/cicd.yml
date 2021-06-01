@@ -35,6 +35,8 @@ jobs:
     - name: Build
       run: |
         dotnet build --configuration Release --no-restore  
+
+        
     # zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./bin/Release/netcoreapp3.1
    
      
