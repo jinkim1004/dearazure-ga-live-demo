@@ -49,3 +49,19 @@ jobs:
     
     
     
+<<<<<<< HEAD
+=======
+    # - name: AWS Deploy S3
+    #   # You may pin to the exact commit or the version.
+    #   # uses: oneyedev/aws-deploy-s3@16e61e78e12904502d31e6c4adbe1f7d58eddaa7
+    #   uses: oneyedev/aws-deploy-s3@v2
+    #   with:
+    #     # AWS Region of S3 Bucket
+    #     region: us-east-1  # default is us-east-1
+    #     # Name of S3 Bucket
+    #     bucket: code-deploy-bucket-ykim
+    #     # A Local Source Directory to Upload
+    #     source: finalbuild.zip # default is ./dist
+    #     # A Remote Target Directory to Upload
+    #     target: GitHubActions # default is 
+>>>>>>> 5f3df10e6304afe761be0522e22ef4290fe5068d
